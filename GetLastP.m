@@ -51,7 +51,7 @@ for i = 1:size
     %ap = (WD*pi)/180+ k00 + k10*cd;
     sp = (b*scor+(scor-m)*bp(1))/(b+(m-scor)*(bp(2)*cos(ap)+bp(3)*sin(ap)));
     errors(i) = sp - s(i);
-    if abs(errors(i))>5
+    if abs(errors(i)) > 2.5
         errorcounter = errorcounter+1;
         errorlabel(errorcounter) = i;
     end
