@@ -2,7 +2,8 @@
 [u0,v0,fx,fy,WD] = InputParam();
 %Laser Plat Param
 % bp=[-0.4023 0.0203 -0.0043];
-bp = [-0.0009 0.0132 -0.0138];
+% bp = [-0.0009 0.0132 -0.0138];
+bp = [0 0 0];
 %register OutParam
 b = zeros(8,1);
 phi = zeros(8,1);
@@ -21,11 +22,13 @@ p02 = zeros(8,1);
 %Calib Range
 minRange = 2400;
 maxRange = 3100;
+min_angle = -19;
+max_angle = 19;
 %correct param
 p1=1;
 p2=0;
 %Calib Camera
-for i = 1:8
+for i = 7:7
     %test cam i
     %i = 4;
     timescounter = 0; 
@@ -35,17 +38,22 @@ for i = 1:8
     %screen out the data
     n = length(num);
     jc = 1;
-    numcounter = 0;
-    while numcounter<n
+    numcounter = 1;
+    while numcounter<=n
+        x = num(jc,1);
+        y = num(jc,2);
         s = num(jc,3);
-        if s>minRange&&s<maxRange
+        a = num(jc,4);
+        if s>minRange&&s<maxRange&&a>min_angle&&a<max_angle&&x~=0&&y~=0
             %sr = p1*s+p2;
+            %num(jc,1)=x;
+            %num(jc,2)=y;
             sr = s;
             num(jc,3)= sr;
-            num(jc,4)=num(jc,4);
+            num(jc,4)=a;
             jc = jc+1;
-        else
-            num(jc,:)=[];
+         else
+             num(jc,:)=[];
         end
         numcounter = numcounter+1;
     end
