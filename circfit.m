@@ -22,4 +22,8 @@ plot(Circle1,Circle2,'g','linewidth',1);
 hold on;
 scatter(x,y);
 axis equal;
+<<<<<<< HEAD
+=======
+hold off;
+>>>>>>> d8176e473c867c79c0086fe774bdd6465b2d1fc7
 end  

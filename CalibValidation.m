@@ -1,5 +1,9 @@
 % input test cam index
+<<<<<<< HEAD
 camid = 7;
+=======
+camid = 1;
+>>>>>>> d8176e473c867c79c0086fe774bdd6465b2d1fc7
 error_threshold = 2;
 %error_threshold = 2.828;
 angle_range = 17;
@@ -94,7 +98,11 @@ end
 output_file = strcat('cam', string(camid), '_validation_result.xlsx');
 B = [{'S_Real', 'Angle', 'S_Pred', 'Angle_Pred', 'S_Error', 'Angle_Error'};num2cell(output_num)];
 cre_num = ceil(cre_rate*counter);
+<<<<<<< HEAD
 H = [{'Mean_Error'}, num2cell(mean_error); {'Samples'}, num2cell(counter);{'Qualified'}, num2cell(counter - error_num);{'Qua_Rate'}, num2cell((counter - error_num)/counter);{'95%_Confidence_Int'}, num2cell(se_cs(cre_num))];
+=======
+H = [{'Mean_Error'}, num2cell(mean_error); {'Samples'}, num2cell(counter);{'Qualified'}, num2cell(counter - error_num);{'Qua_Rate'}, num2cell((counter - error_num)/counter);{'Confidence_Int'}, num2cell(se_cs(cre_num))];
+>>>>>>> d8176e473c867c79c0086fe774bdd6465b2d1fc7
 xlswrite(output_file, B);
 xlswrite(output_file, H,1,'H2');
 

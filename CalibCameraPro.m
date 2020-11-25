@@ -22,13 +22,22 @@ p02 = zeros(8,1);
 %Calib Range
 minRange = 2400;
 maxRange = 3100;
+<<<<<<< HEAD
 min_angle = -19;
 max_angle = 19;
+=======
+min_angle = -17;
+max_angle = 17;
+>>>>>>> d8176e473c867c79c0086fe774bdd6465b2d1fc7
 %correct param
 p1=1;
 p2=0;
 %Calib Camera
+<<<<<<< HEAD
 for i = 7:7
+=======
+for i = 1:1
+>>>>>>> d8176e473c867c79c0086fe774bdd6465b2d1fc7
     %test cam i
     %i = 4;
     timescounter = 0; 
