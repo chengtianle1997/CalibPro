@@ -1,5 +1,5 @@
 % input test cam index
-camid_list = [1 2 7 8];
+camid_list = [1 2 3 4 5 6 7 8];
 
 error_threshold = 2;
 %error_threshold = 2.828;

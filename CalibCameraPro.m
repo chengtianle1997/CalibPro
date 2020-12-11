@@ -28,7 +28,7 @@ max_angle = 16;
 p1=1;
 p2=0;
 %Calib Camera
-Camera = [1 2 7 8]
+Camera = [1 2 3 4 5 6 7 8]
 for i = Camera
     %test cam i
     %i = 4;
