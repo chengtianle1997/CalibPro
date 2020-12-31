@@ -1,5 +1,7 @@
 % input test cam index
-camid_list = [1 2 3 4 5 6 7 8];
+camid_list = [2 7];
+% camid_list = [2];
+
 
 error_threshold = 2;
 %error_threshold = 2.828;
@@ -8,7 +10,12 @@ s_range_max = 3000;
 s_range_min = 2500;
 cre_rate = 0.95;
 %filename = "cam8_validation.xlsx";
-filename = strcat('cam', string(camid), '_validation.xlsx');
+% filename = strcat('cam', string(camid), '_validation.xlsx');
+
+% sin_corr
+A = 2.09;
+T = -13.47;
+A = 0;
 
 bp = [0 0 0];
 
@@ -48,6 +55,7 @@ for camid = camid_list
     ap = zeros(size, 1);
     se = zeros(size, 1);
     ae = zeros(size, 1);
+    wd = zeros(size, 1);
     se_c = zeros(size,1);
     error_sum = 0;
     error_num = 0;
@@ -66,6 +74,8 @@ for camid = camid_list
         api = (WD(camid)*pi)/180+ k00(camid) + k10(camid)*cd + k01(camid)*x(i) + k11(camid)*cd*x(i) + k02(camid)*x(i)^2;
         ap(i) = k00(camid) + k10(camid)*cd + k01(camid)*x(i) + k11(camid)*cd*x(i) + k02(camid)*x(i)^2;
         sp(i) = (b(camid)*scor+(scor-m(camid))*bp(1))/(b(camid)+(m(camid)-scor)*(bp(2)*cos(api)+bp(3)*sin(api)));
+        wd(i) = WD(camid) + cd;
+        sp(i) = sp(i) - A * sin(wd(i)*pi/180 + T);
         ap(i) = ap(i)*180/pi;
         se(i) = sp(i) - s(i);
         ae(i) = ap(i) - a(i);
