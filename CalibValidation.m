@@ -1,7 +1,6 @@
 % input test cam index
-camid_list = [2 7];
+camid_list = [4];
 % camid_list = [2];
-
 
 error_threshold = 2;
 %error_threshold = 2.828;
@@ -60,6 +59,7 @@ for camid = camid_list
     error_sum = 0;
     error_num = 0;
     counter = 0;
+    error_noabs = 0;
     for i = 1: size
         x(i) = num(i, 1);
         y(i) = num(i, 2);
@@ -81,6 +81,7 @@ for camid = camid_list
         ae(i) = ap(i) - a(i);
         if(abs(a(i))<angle_range)&&(s(i)<s_range_max)&&(s(i)>s_range_min)
             error_sum = error_sum + abs(se(i));
+            error_noabs = error_noabs + se(i);
             %error_sum = error_sum + se(i);
             counter = counter + 1;
             se_c(counter) = abs(se(i)); 
@@ -113,7 +114,7 @@ for camid = camid_list
     xlswrite(output_file, B);
     xlswrite(output_file, H,1,'H2');
     fprintf("\n-----CAM%d-----\n Mean_Error=%f\n 2mm_Qua_Rate=%f%", camid, mean_error, (counter - error_num) * 100/counter);
-    fprintf("\n 95_Conf_Int=%f\n", se_cs(cre_num));
+    fprintf("\n 95_Conf_Int=%f\n Mean_Error(NoABS)=%f\n", se_cs(cre_num), error_noabs / counter);
     %disp(se_cs(cre_num));
 end
 
